@@ -22,7 +22,7 @@
     {{-- @include('partials.flash') --}}
 
     <!-- Main Content -->
-    <main class="pt-20 md:pt-15">
+    <main class="container mx-auto md:pt-15">
         @yield('content')
     </main>
 
