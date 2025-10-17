@@ -7,12 +7,25 @@ use Illuminate\Http\Request;
 
 class MagazijnController extends Controller
 {
+    private $magazijnModel;
+    public function __construct()
+    {
+        $this->magazijnModel = new MagazijnModel();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('magazijnen.index');
+        // Fetch all magazijnen from the model
+        $magazijnen = $this->magazijnModel->sp_getAllMagazijnen();
+
+        // Pass the data to the view
+        return view('magazijnen.index', [
+            'Magazijnen' => $magazijnen
+        ]);
+
     }
 
     /**
