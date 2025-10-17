@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class MagazijnModel extends Model
-{
+{   
+
     public function sp_getAllMagazijnen()
     {
 
