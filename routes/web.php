@@ -12,6 +12,9 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+// Magazijn OverView 
+Route::get('magazijnen.index', [MagazijnController::class, 'index'])->name('magazijnen.index');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
