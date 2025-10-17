@@ -12,9 +12,18 @@ BEGIN
         ,m.AantalAanwezig AS aantal_aanwezig
 
     FROM Magazijn m
-    INNER JOIN Product p ON m.ProductId = p.Id
-    WHERE m.IsActief = 1 AND p.IsActief = 1
-    ORDER BY p.Naam ASC;
+
+
+    INNER JOIN 
+              Product p 
+    ON 
+            m.ProductId = p.Id
+    WHERE 
+         m.IsActief = 1 
+         AND 
+         p.IsActief = 1
+    ORDER BY
+            p.Barcode ASC;
 
 END$$
 
