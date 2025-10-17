@@ -1,8 +1,8 @@
 @extends('magazijnen.layouts.layouts')
 
 @section('content')
-    <h1>Overzicht Magazijn Jamin</h1>
-    <table class="table-fixed border-collapse border border-gray-400 w-full text-left">
+    <h1 class="text-5xl">Overzicht Magazijn Jamin</h1>
+    <table class="table-fixed border-collapse border border-gray-400 w-full text-center m-4">
         <thead class="bg-gray-200">
             <tr>
                 <th class="border border-gray-400 px-4 py-2">Barcode</th>
@@ -15,7 +15,7 @@
         </thead>
         <tbody>
            @foreach ($Magazijnen as $Magazijn )
-            <tr>
+            <tr> 
                 <td class="border border-gray-400 px-4 py-2">{{ $Magazijn->barcode }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $Magazijn->naam }}</td>
                 <td class="border border-gray-400 px-4 py-2">{{ $Magazijn->verpakkingseenheid }}</td>
