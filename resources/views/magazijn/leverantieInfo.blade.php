@@ -8,31 +8,35 @@
         @foreach ($leverancier as $l)
             <p><strong>Naam leverancier:</strong> {{ $l->Naam ?? 'N/A' }}</p>
             <p><strong>Contactpersoon leverancier:</strong> {{ $l->Contactpersoon ?? 'N/A' }}</p>
-            <p><strong>Leverancier nummer:</strong> {{ $l->Nummer ?? 'N/A' }}</p>
+            <p><strong>Leverancier nummer:</strong> {{ $l->Leveranciernummer ?? 'N/A' }}</p>
             <p><strong>Mobiel:</strong> {{ $l->Mobiel ?? 'N/A' }}</p>
         @endforeach
     </div>
 @endsection
 
 @section('t_leverancier')
-    {{-- <table class="min-w-full bg-white border">
-        <thead>
-            <tr>
-                <th class="py-2 px-4 border-b">Naam Product</th>
-                <th class="py-2 px-4 border-b">Datum laatste levering</th>
-                <th class="py-2 px-4 border-b">Aantal</th>
-                <th class="py-2 px-4 border-b">Eerstvolgende levering</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($leveringen as $levering)
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border rounded-lg shadow-sm">
+            <thead class="bg-gray-100">
                 <tr>
-                    <td class="py-2 px-4 border-b">{{ $levering->product->naam }}</td>
-                    <td class="py-2 px-4 border-b">{{ $levering->datum_laaste_levering }}</td>
-                    <td class="py-2 px-4 border-b">{{ $levering->aantal }}</td>
-                    <td class="py-2 px-4 border-b">{{ $levering->eerstvolgende_levering }}</td>
+                    <th class=" text-center py-3 px-6  text-gray-700 uppercase tracking-wider border-b">Naam Product</th>
+                    <th class=" text-center py-3 px-6  text-gray-700 uppercase tracking-wider border-b">Datum laatste levering
+                    </th>
+                    <th class=" text-center py-3 px-6  text-gray-700 uppercase tracking-wider border-b">Aantal</th>
+                    <th class=" text-center py-3 px-6  text-gray-700 uppercase tracking-wider border-b">Eerstvolgende levering
+                    </th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table> --}}
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                @foreach ($producten as $product)
+                    <tr class="hover:bg-gray-50 transition-colors duration-200">
+                        <td class=" text-center py-3 px-6">{{ $product->ProductNaam ?? 'N/A' }}</td>
+                        <td class=" text-center py-3 px-6">{{ $product->DatumLevering ?? 'N/A' }}</td>
+                        <td class=" text-center py-3 px-6">{{ $product->AantalGeleverd ?? 'N/A' }}</td>
+                        <td class=" text-center py-3 px-6">{{ $product->DatumEerstVolgendeLevering ?? 'N/A' }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
