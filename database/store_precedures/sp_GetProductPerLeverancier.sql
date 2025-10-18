@@ -1,10 +1,10 @@
 USE aryanDBassignment;
 
-DROP PROCEDURE IF EXISTS sp_GetLeverancierById;
+DROP PROCEDURE IF EXISTS sp_GetProductPerLeverancier;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_GetLeverancierById(
+CREATE PROCEDURE sp_GetProductPerLeverancier(
     IN p_ProductId INT
 )
 BEGIN
