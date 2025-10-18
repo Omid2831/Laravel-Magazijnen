@@ -8,6 +8,5 @@ use App\Http\Controllers\LeverancierController;
 // Magazijn Overview
 Route::get('magazijnen.index', [MagazijnController::class, 'index'])->name('magazijnen.index');
 
-// LeverAncier info 
-
-Route::get('/leverancier/{id}', [LeverancierController::class, 'show'])->name('leverancier.show');
+// Leverancier info
+Route::get('/magazijn/{id}/leverantieInfo', [MagazijnController::class, 'leverantieInfo'])->name('magazijn.leverantieInfo');
