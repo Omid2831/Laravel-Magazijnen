@@ -8,18 +8,22 @@ CREATE PROCEDURE sp_GetProductPerLeverancier(
     IN p_ProductId INT
 )
 BEGIN
-    SELECT
-         p.Naam AS ProductNaam
-       , DATE_FORMAT(PPL.DatumLevering, '%d-%m-%Y') AS DatumLevering
-       , PPL.Aantal AS AantalGeleverd
-       , DATE_FORMAT(PPL.DatumEerstVolgendeLevering, '%d-%m-%Y') AS DatumEerstVolgendeLevering
+    SELECT 
+         P.Naam AS ProductNaam
+        ,PPL.DatumLevering AS DatumLaatsteLevering
+        ,PPL.Aantal as AantalGeleverd
+        ,PPL.DatumEerstVolgendeLevering AS EerstvolgendeLevering
+        ,M.AantalAanwezig AS DatumEerstVolgendeLevering
 
-    FROM ProductPerLeverancier AS PPL
+    FROM Product P
 
-    INNER JOIN Product AS p
-    ON PPL.ProductId = p.Id
+    LEFT JOIN ProductPerLeverancier PPL 
+        ON P.Id = PPL.ProductId
+    LEFT JOIN Magazijn M 
+        ON P.Id = M.ProductId
 
-    WHERE PPL.ProductId = p_ProductId;
-END$$
+    WHERE P.Id = p_ProductId
+    ORDER BY PPL.DatumLevering ASC;
+END $$
 
 DELIMITER ;
