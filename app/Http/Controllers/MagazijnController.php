@@ -30,12 +30,12 @@ class MagazijnController extends Controller
     }
 
     /* Displaying our leverantieInfo from the model */
-    public function leverantieInfo()
-    {
-        return view('magazijn.leverantieInfo', [
-            'title' => 'Leverantie Informatie'
-        ]);
-    }
+    // public function leverantieInfo()
+    // {
+    //     return view('magazijnen.leverantieInfo', [
+    //         'title' => 'Leverantie Informatie'
+    //     ]);
+    // }
     /**
      * Show the form for creating a new resource.
      */
