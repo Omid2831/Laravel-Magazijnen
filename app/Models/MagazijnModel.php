@@ -15,7 +15,15 @@ class MagazijnModel extends Model
         return DB::select('CALL sp_GetAllProducts()');
     }
 
-    public function sp_GetLeverancierById($id){
+    public function sp_GetLeverancierById($id)
+    {
+        // fetching the data from the database  by id 
         return DB::select('CALL sp_GetLeverancierInfo(?)', [$id]);
+    }
+
+    public function ProductPerLeverancier($id)
+    {
+        // fetching the data from the database  by id
+        return DB::select('CALL sp_GetProductPerLeverancier(?)', [$id]);
     }
 }
