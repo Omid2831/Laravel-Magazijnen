@@ -23,6 +23,7 @@ class MagazijnController extends Controller
 
         // Pass the data to the view
         return view('magazijnen.index', [
+            'title' => 'Overzicht Magazijn Jamin',
             'Magazijnen' => $magazijnen
         ]);
 
