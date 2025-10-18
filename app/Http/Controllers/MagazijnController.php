@@ -24,11 +24,18 @@ class MagazijnController extends Controller
         // Pass the data to the view
         return view('magazijnen.index', [
             'title' => 'Overzicht Magazijn Jamin',
-            'Magazijnen' => $magazijnen
+            'products' => $magazijnen
         ]);
 
     }
 
+    /* Displaying our leverantieInfo from the model */
+    public function leverantieInfo()
+    {
+        return view('magazijn.leverantieInfo', [
+            'title' => 'Leverantie Informatie'
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
