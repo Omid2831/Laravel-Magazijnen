@@ -13,7 +13,7 @@ BEGIN
         ,PPL.DatumLevering AS DatumLaatsteLevering
         ,PPL.Aantal as AantalGeleverd
         ,PPL.DatumEerstVolgendeLevering AS EerstvolgendeLevering
-        ,M.AantalAanwezig AS DatumEerstVolgendeLevering
+        ,M.AantalAanwezig AS AantalAanwezig
 
     FROM Product P
 
