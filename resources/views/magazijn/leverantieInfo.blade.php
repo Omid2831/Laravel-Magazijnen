@@ -31,9 +31,9 @@
                 @foreach ($producten as $product)
                     <tr class="hover:bg-gray-50 transition-colors duration-200">
                         <td class=" text-center py-3 px-6">{{ $product->ProductNaam ?? 'N/A' }}</td>
-                        <td class=" text-center py-3 px-6">{{ $product->DatumLevering ?? 'N/A' }}</td>
+                        <td class=" text-center py-3 px-6">{{ $product->DatumLaatsteLevering ?? 'N/A' }}</td>
                         <td class=" text-center py-3 px-6">{{ $product->AantalGeleverd ?? 'N/A' }}</td>
-                        <td class=" text-center py-3 px-6">{{ $product->DatumEerstVolgendeLevering ?? 'N/A' }}</td>
+                        <td class=" text-center py-3 px-6">{{ $product->EerstvolgendeLevering ?? 'N/A' }}</td>
                     </tr>
                 @endforeach
             </tbody>
