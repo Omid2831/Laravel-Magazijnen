@@ -10,11 +10,11 @@ CREATE PROCEDURE sp_GetLeverancierInfo(
 )
 BEGIN
 
-    SELECT DISTINCT L.Naam
+    SELECT DISTINCT L.Naam AS Naam
 
-        , L.Contactpersoon
-        , L.Leveranciernummer
-        , L.Mobiel
+        , L.Contactpersoon AS Contactpersoon
+        , L.Leveranciernummer AS Leveranciernummer
+        , L.Mobiel AS Mobiel
 
     FROM Leverancier AS L
 

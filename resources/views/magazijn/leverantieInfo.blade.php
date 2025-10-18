@@ -5,15 +5,17 @@
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Leverings Informatie</h1>
 
     <div class="mb-4">
-        <p><strong>Naam leverancier:</strong> {{ $leverancier->naam }}</p>
-        <p><strong>Contactpersoon leverancier:</strong> {{ $leverancier->contactpersoon }}</p>
-        <p><strong>Leverancier nummer:</strong> {{ $leverancier->nummer }}</p>
-        <p><strong>Mobiel:</strong> {{ $leverancier->mobiel }}</p>
+        @foreach ($leverancier as $l)
+            <p><strong>Naam leverancier:</strong> {{ $l->Naam ?? 'N/A' }}</p>
+            <p><strong>Contactpersoon leverancier:</strong> {{ $l->Contactpersoon ?? 'N/A' }}</p>
+            <p><strong>Leverancier nummer:</strong> {{ $l->Nummer ?? 'N/A' }}</p>
+            <p><strong>Mobiel:</strong> {{ $l->Mobiel ?? 'N/A' }}</p>
+        @endforeach
     </div>
 @endsection
 
 @section('t_leverancier')
-{{-- <table class="min-w-full bg-white border">
+    {{-- <table class="min-w-full bg-white border">
         <thead>
             <tr>
                 <th class="py-2 px-4 border-b">Naam Product</th>

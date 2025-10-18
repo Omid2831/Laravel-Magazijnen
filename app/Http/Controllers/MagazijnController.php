@@ -30,10 +30,13 @@ class MagazijnController extends Controller
     }
 
     /* Displaying our leverantieInfo from the model */
-    public function leverantieInfo()
+    public function leverantieInfo($id)
     {
+        $leverancier = $this->magazijnModel->sp_GetLeverancierById($id);
+
         return view('magazijn.leverantieInfo', [
-            'title' => 'Leverantie Informatie'
+            'title' => 'Leverantie Informatie',
+            'leverancier' => $leverancier
         ]);
     }
 
