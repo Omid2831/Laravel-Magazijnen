@@ -33,10 +33,12 @@ class MagazijnController extends Controller
     public function leverantieInfo($id)
     {
         $leverancier = $this->magazijnModel->sp_GetLeverancierById($id);
+        $producten = $this->magazijnModel->ProductPerLeverancier($id);
 
         return view('magazijn.leverantieInfo', [
             'title' => 'Leverantie Informatie',
-            'leverancier' => $leverancier
+            'leverancier' => $leverancier,
+            'producten' => $producten
         ]);
     }
 
