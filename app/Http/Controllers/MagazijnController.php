@@ -19,10 +19,10 @@ class MagazijnController extends Controller
     public function index()
     {
         // Fetch all magazijnen from the model
-        $magazijnen = $this->magazijnModel->sp_getAllMagazijnen();
+        $magazijnen = $this->magazijnModel->sp_GetAllProducts();
 
         // Pass the data to the view
-        return view('magazijnen.index', [
+        return view('magazijn.index', [
             'title' => 'Overzicht Magazijn Jamin',
             'products' => $magazijnen
         ]);
@@ -30,12 +30,19 @@ class MagazijnController extends Controller
     }
 
     /* Displaying our leverantieInfo from the model */
-    // public function leverantieInfo()
-    // {
-    //     return view('magazijnen.leverantieInfo', [
-    //         'title' => 'Leverantie Informatie'
-    //     ]);
-    // }
+    public function leverantieInfo()
+    {
+        return view('magazijn.leverantieInfo', [
+            'title' => 'Leverantie Informatie'
+        ]);
+    }
+
+    public function allergeenInfo()
+    {
+        return view('magazijn.leverantieInfo', [
+            'title' => 'Leverantie Informatie'
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */

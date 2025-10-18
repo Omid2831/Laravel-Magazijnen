@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\DB;
 class MagazijnModel extends Model
 {   
 
-    public function sp_getAllMagazijnen()
+    public function sp_GetAllProducts()
     {
 
         // fetching the data from the database
-        return DB::select('CALL sp_GetAllMagazijnen()');
+        return DB::select('CALL sp_GetAllProducts()');
     }
 }

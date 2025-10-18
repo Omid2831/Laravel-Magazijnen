@@ -1,4 +1,4 @@
-@extends('magazijnen.layouts.leverancier')
+@extends('magazijn.layouts.leverancier')
 
 
 @section('leverancierInfo')

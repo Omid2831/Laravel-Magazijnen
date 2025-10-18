@@ -14,8 +14,10 @@ Route::get('/', function () {
 // Magazijn Overview
 Route::get('magazijnen.index', [MagazijnController::class, 'index'])->name('magazijnen.index');
 
+// allergeen info
+Route::get('/magazijn/{id}/allergenenInfo', [MagazijnController::class, 'allergenenInfo'])->name('magazijn.allergenenInfo');
 // Leverancier info
-// Route::get('/magazijnen/{id}/leverantieInfo', [MagazijnController::class, 'leverantieInfo'])->name('magazijn.leverantieInfo');
+Route::get('/magazijn/{id}/leverantieInfo', [MagazijnController::class, 'leverantieInfo'])->name('magazijn.leverantieInfo');
 
 
 Route::view('dashboard', 'dashboard')
