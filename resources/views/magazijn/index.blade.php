@@ -9,7 +9,6 @@
                     <th class="border border-gray-400 px-4 py-2">Barcode</th>
                     <th class="border border-gray-400 px-4 py-2">Naam</th>
                     <th class="border border-gray-400 px-4 py-2">Verpakkingseenheid</th>
-                    <th class="border border-gray-400 px-4 py-2">Aantal aanwezig</th>
                     <th class="border border-gray-400 px-4 py-2">Allergenen Info</th>
                     <th class="border border-gray-400 px-4 py-2">Leverantie Info</th>
                 </tr>
@@ -20,7 +19,6 @@
                         <td class="border border-gray-400 px-4 py-2">{{ $product->Barcode }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $product->Naam }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $product->VerpakkingsEenheid }}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ $product->AantalAanwezig }}</td>
                         {{--  note : use this for your hovering links
                         class="text-gray-500 hover:text-pink-600 hover:drop-shadow-lg hover:shadow-pink-500/50
                         transition-all duration-300 hover:font-semibold hover:scale-105">
