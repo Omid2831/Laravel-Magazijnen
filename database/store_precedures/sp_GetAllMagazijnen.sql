@@ -5,8 +5,8 @@ DELIMITER $$
 CREATE PROCEDURE sp_GetAllMagazijnen()
 BEGIN
     SELECT
-
-         p.Barcode AS barcode
+         m.Id AS magazijnId
+        ,p.Barcode AS barcode
         ,p.Naam AS naam
         ,m.VerpakkingsEenheid AS verpakkingseenheid
         ,m.AantalAanwezig AS aantal_aanwezig
