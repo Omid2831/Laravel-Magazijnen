@@ -23,7 +23,7 @@
             @yield('leverancierInfo')
         </div>
 
-        <div class="mb-6 p-2">
+        <div class="mb-2 p-2">
             @yield('t_leverancier')
         </div>
     </main>
