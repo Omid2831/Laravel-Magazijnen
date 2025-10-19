@@ -40,14 +40,21 @@ class MagazijnController extends Controller
             $hasStock = false;
             $nextDeliveryDate = null;
 
-            foreach($producten as $product)
-            {
-                if(!is_null($product->AantalAanwezig) && $product->AantalAanwezig > 0)
-                {
+            foreach ($producten as $product) {
+                if (!is_null($product->AantalAanwezig) && $product->AantalAanwezig > 0) {
                     $hasStock = true;
                     break;
                 }
-                
+            }
+
+            //if no stock avaliable show us a message to the user
+            if (!$hasStock) {
+                return view('magazijn.leverantieInfo', [
+                    'title' => 'Leverantie Informatie',
+                    'leverancier' => $leverancier,
+                    'producten' => $producten,
+                    'error' => '“ Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is: 30-04-2023. "'
+                ]);
             }
 
             // Stock exists, normal view
