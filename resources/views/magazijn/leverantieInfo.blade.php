@@ -15,8 +15,8 @@
 @endsection
 
 @section('t_leverancier')
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border rounded-lg shadow-sm">
+    <div class="bg-white shadow-lg rounded-lg overflow-x-auto border-4 mt-4">
+        <table class="table-fixed border-collapse border border-gray-400 w-full text-center">
             <thead class="bg-gray-100">
                 <tr>
                     <th class="text-center py-3 px-6 text-gray-700 uppercase tracking-wider border-b">Naam Product</th>
@@ -39,8 +39,11 @@
                     @endforeach
                 @else
                     <tr id="no-stock-message">
-                        <td colspan="4" class="text-center py-4 px-6 text-red-600 font-semibold">
-                            <h2> {{ $error ?? 'Er is iets mis gegaan in de database' }}</h2>
+                        <td colspan="4" class="text-center px-6 py-8 bg-red-50">
+                                <h2 class="text-2xl font-semibold text-red-700 mb-2">
+                                    {{ $error ?? 'Er is iets mis gegaan in de database' }}
+                                </h2>
+                                <p class="text-gray-600">U wordt automatisch teruggestuurd naar het magazijnoverzicht...</p>
                         </td>
                     </tr>
                 @endif
