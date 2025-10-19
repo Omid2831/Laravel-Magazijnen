@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MagazijnModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MagazijnController extends Controller
 {
@@ -26,20 +27,26 @@ class MagazijnController extends Controller
             'title' => 'Overzicht Magazijn Jamin',
             'products' => $magazijnen
         ]);
-
     }
 
     /* Displaying our leverantieInfo from the model */
     public function leverantieInfo($id)
     {
-        $leverancier = $this->magazijnModel->sp_GetLeverancierById($id);
-        $producten = $this->magazijnModel->ProductPerLeverancier($id);
+        try {
+            $leverancier = $this->magazijnModel->sp_GetLeverancierById($id);
+            $producten = $this->magazijnModel->ProductPerLeverancier($id);
 
-        return view('magazijn.leverantieInfo', [
-            'title' => 'Leverantie Informatie',
-            'leverancier' => $leverancier,
-            'producten' => $producten
-        ]);
+
+            // Stock exists, normal view
+            return view('magazijn.leverantieInfo', [
+                'title' => 'Leverantie Informatie',
+                'leverancier' => $leverancier,
+                'producten' => $producten
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching leverancier info: ' . $e->getMessage());
+            return back()->with('error', 'Er is een fout opgetreden bij het ophalen van de leverancier informatie.');
+        }
     }
 
     public function allergeenInfo()
