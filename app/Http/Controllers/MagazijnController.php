@@ -48,7 +48,8 @@ class MagazijnController extends Controller
 
             // Set fixed no-stock message
             $errorMessage = null;
-            if (!$hasStock) {
+            if (!$hasStock)
+        {
                 // define the error message here to pass to the view if there is no stock
                 $errorMessage = 'Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is: 30-04-2023';
             return view('magazijn.leverantieInfo', [
@@ -59,6 +60,14 @@ class MagazijnController extends Controller
                 'error' => $errorMessage
             ]);
         }
+            // if there is a stock available, return the view successfully
+            return view('magazijn.leverantieInfo', [
+                'title' => 'Leverantie Informatie',
+                'leverancier' => $leverancier,
+                'producten' => $producten,
+                'hasStock' => $hasStock
+            ]);
+
         } catch (\Exception $e) {
             Log::error('Error fetching leverancier info: ' . $e->getMessage());
             return back()->with('error', 'Er is een fout opgetreden bij het ophalen van de leverancier informatie.');
