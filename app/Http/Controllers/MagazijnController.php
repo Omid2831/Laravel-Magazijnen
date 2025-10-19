@@ -36,10 +36,9 @@ class MagazijnController extends Controller
             $leverancier = $this->magazijnModel->sp_GetLeverancierById($id);
             $producten = $this->magazijnModel->ProductPerLeverancier($id);
 
-            // Check if Leverancier exists
             $hasStock = false;
-            $nextDeliveryDate = null;
 
+            // Check if any stock exists
             foreach ($producten as $product) {
                 if (!is_null($product->AantalAanwezig) && $product->AantalAanwezig > 0) {
                     $hasStock = true;
@@ -47,27 +46,25 @@ class MagazijnController extends Controller
                 }
             }
 
-            //if no stock avaliable show us a message to the user
+            // Set fixed no-stock message
+            $errorMessage = null;
             if (!$hasStock) {
-                return view('magazijn.leverantieInfo', [
-                    'title' => 'Leverantie Informatie',
-                    'leverancier' => $leverancier,
-                    'producten' => $producten,
-                    'error' => '“ Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is: 30-04-2023. "'
-                ]);
-            }
-
-            // Stock exists, normal view
+                // define the error message here to pass to the view if there is no stock
+                $errorMessage = 'Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is: 30-04-2023';
             return view('magazijn.leverantieInfo', [
                 'title' => 'Leverantie Informatie',
                 'leverancier' => $leverancier,
-                'producten' => $producten
+                'producten' => $producten,
+                'hasStock' => $hasStock,
+                'error' => $errorMessage
             ]);
+        }
         } catch (\Exception $e) {
             Log::error('Error fetching leverancier info: ' . $e->getMessage());
             return back()->with('error', 'Er is een fout opgetreden bij het ophalen van de leverancier informatie.');
         }
     }
+
 
     public function allergeenInfo()
     {
