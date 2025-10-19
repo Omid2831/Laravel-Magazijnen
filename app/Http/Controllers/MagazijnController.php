@@ -36,6 +36,19 @@ class MagazijnController extends Controller
             $leverancier = $this->magazijnModel->sp_GetLeverancierById($id);
             $producten = $this->magazijnModel->ProductPerLeverancier($id);
 
+            // Check if Leverancier exists
+            $hasStock = false;
+            $nextDeliveryDate = null;
+
+            foreach($producten as $product)
+            {
+                if(!is_null($product->AantalAanwezig) && $product->AantalAanwezig > 0)
+                {
+                    $hasStock = true;
+                    break;
+                }
+                
+            }
 
             // Stock exists, normal view
             return view('magazijn.leverantieInfo', [
