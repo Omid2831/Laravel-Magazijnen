@@ -32,4 +32,4 @@
 
 </html>
 
-@stack('scripts')
+@stack('leverancier')
