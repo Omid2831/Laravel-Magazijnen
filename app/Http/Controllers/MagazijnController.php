@@ -75,10 +75,13 @@ class MagazijnController extends Controller
     }
 
 
-    public function allergeenInfo()
-    {
-        return view('magazijn.leverantieInfo', [
-            'title' => 'Leverantie Informatie'
+    public function allergeenInfo($id)
+    {   
+         $allergeenInfo = $this->magazijnModel->sp_GetAllergeenById($id); 
+
+        return view('magazijn.allergeenInfo', [
+            'title' => 'Allergeen Informatie',
+            'allergeen' => $allergeenInfo
         ]);
     }
     /**
