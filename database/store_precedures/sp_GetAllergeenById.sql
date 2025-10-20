@@ -1,3 +1,5 @@
+USE aryanDBassignment;
+
 DROP PROCEDURE IF EXISTS sp_GetAllergeenById;
 
 DELIMITER $$
@@ -11,6 +13,7 @@ BEGIN
     SELECT Id
           ,Naam
           ,Omschrijving
+          ,FORMAT(ALGE.DatumGewijzigd, '%d-%m-%Y') AS DatumGewijzigd
     FROM Allergeen
     WHERE Id = p_id;
 
