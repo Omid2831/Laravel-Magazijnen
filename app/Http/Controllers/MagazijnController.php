@@ -77,8 +77,8 @@ class MagazijnController extends Controller
     {
 
             $products = $this->magazijnModel->sp_GetProductById($id);
-          //  $allergeen = $this->magazijnModel->sp_GetProductPerAlleergeen($id);
-            
+            $allergeen = $this->magazijnModel->sp_GetAllergeenById($id);
+
             /*
         Use for debugging purposes and see the data being fetched successfully
         
@@ -86,7 +86,7 @@ class MagazijnController extends Controller
             return view('magazijn.allergeenInfo', [
                 'title' => 'Allergeen Informatie',
                 'products' => $products,
-               // 'allergeen' => $allergeen
+                'allergeen' => $allergeen
                
             ]);
         

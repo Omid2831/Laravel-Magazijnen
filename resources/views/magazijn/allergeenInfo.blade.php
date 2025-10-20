@@ -14,7 +14,7 @@
 
 
 @section('t_allergeen')
-    {{-- <div class="bg-white shadow-lg rounded-lg overflow-x-auto border-4 mt-4">
+    <div class="bg-white shadow-lg rounded-lg overflow-x-auto border-4 mt-4">
         <table class="table-fixed border-collapse border border-gray-400 w-full text-center">
             <thead class="bg-gray-100">
                 <tr>
@@ -25,11 +25,11 @@
             <tbody class="divide-y divide-gray-200">
                 @foreach ($allergeen as $items)
                     <tr class="hover:bg-gray-50 transition-colors duration-200">
-                        <td class="text-center py-3 px-6">{{ $items->Naam ?? 'N/A' }}</td>
-                        <td class="text-center py-3 px-6">{{ $items->Omschrijving ?? 'N/A' }}</td>
+                        <td class="text-center py-3 px-6">{{ $items->AllergeenNaam ?? 'N/A' }}</td>
+                        <td class="text-center py-3 px-6">{{ $items->AllergeenOmschrijving ?? 'N/A' }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-    </div> --}}
+    </div>
 @endsection
