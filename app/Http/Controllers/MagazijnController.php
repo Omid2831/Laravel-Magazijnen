@@ -75,20 +75,41 @@ class MagazijnController extends Controller
 
     public function allergeenInfo($id)
     {
-
+        try {
+            // Fetch product and allergen information
             $products = $this->magazijnModel->sp_GetProductById($id);
             $allergeen = $this->magazijnModel->sp_GetAllergeenById($id);
 
-            /*
-        Use for debugging purposes and see the data being fetched successfully
-        
-    */
+            // Check stock availability
+            $hasStock_allergeen = false;
+            foreach ($allergeen as $item) {
+                if (
+                    !is_null($item->AllergeenNaam)
+                    && !is_null($item->AllergeenOmschrijving)
+                ) {
+                    $hasStock_allergeen = true;
+                    break;
+                }
+            }
+
+            // Handel no stock availibality
+            $errorMessage = null;
+            if (!$hasStock_allergeen) 
+            {
+                // set the error message here to pass it to the view if there is no stock
+                $errorMessage = 'In dit product zitten geen stoffen die een allergische reactie kunnen veroorzaken';
+            }
+            // Return the view with data and its error status
             return view('magazijn.allergeenInfo', [
                 'title' => 'Allergeen Informatie',
                 'products' => $products,
-                'allergeen' => $allergeen
-               
+                'allergeen' => $allergeen,
+                'hasStock_allergeen' => $hasStock_allergeen,
+                'error' => $errorMessage
             ]);
-        
+        } catch (\Exception $e) {
+            Log::error('Error fetching allergeen info: ' . $e->getMessage());
+            return back()->with('error', 'Er is een fout opgetreden bij het ophalen van de allergeen informatie.');
+        }
     }
 }
