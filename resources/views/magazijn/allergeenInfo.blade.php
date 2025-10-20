@@ -53,3 +53,15 @@
         </table>
     </div>
 @endsection
+
+
+@push('allergeen')
+    @if (!$hasStock_allergeen)
+        <script>
+            // Redirect to warehouse overview after 4 seconds
+            setTimeout(function() {
+                window.location.href = "{{ route('magazijn.index') }}";
+            }, 4000);
+        </script>
+    @endif
+@endpush
