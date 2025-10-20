@@ -75,70 +75,20 @@ class MagazijnController extends Controller
 
     public function allergeenInfo($id)
     {
-        try {
 
             $products = $this->magazijnModel->sp_GetProductById($id);
-            $allergeenInfo = $this->magazijnModel->sp_GetAllergeenById($id);
-
+          //  $allergeen = $this->magazijnModel->sp_GetProductPerAlleergeen($id);
+            
             /*
         Use for debugging purposes and see the data being fetched successfully
-        dd([$allergeenInfo, $products]);
+        
     */
             return view('magazijn.allergeenInfo', [
                 'title' => 'Allergeen Informatie',
-                'allergeen' => $allergeenInfo,
-                'products' => $products
+                'products' => $products,
+               // 'allergeen' => $allergeen
+               
             ]);
-        } catch (\Exception $e) {
-            Log::error('Error fetching allergeen info: ' . $e->getMessage());
-            return back()->with('error', 'Er is een fout opgetreden bij het ophalen van de allergeen informatie.');
-        }
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(MagazijnModel $magazijnModel)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(MagazijnModel $magazijnModel)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, MagazijnModel $magazijnModel)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(MagazijnModel $magazijnModel)
-    {
-        //
+        
     }
 }

@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class MagazijnModel extends Model
-{   
+{
 
+    // fetching all products from the database on magazijn
+    
     public function sp_GetAllProducts()
     {
 
@@ -15,11 +17,21 @@ class MagazijnModel extends Model
         return DB::select('CALL sp_GetAllProducts()');
     }
 
+    // fetching the leverancier info
+
     public function sp_GetLeverancierById($id)
     {
-        // fetching the data from the database  by id 
+        // fetching the data from the database  by id
         return DB::select('CALL sp_GetLeverancierInfo(?)', [$id]);
     }
+    
+    public function ProductPerLeverancier($id)
+    {
+        // fetching the data from the database  by id
+        return DB::select('CALL sp_GetProductPerLeverancier(?)', [$id]);
+    }
+
+    // fetching the allergeen info
 
     public function sp_GetProductById($id)
     {
@@ -27,15 +39,9 @@ class MagazijnModel extends Model
         return DB::select('CALL sp_GetProductById(?)', [$id]);
     }
 
-    public function sp_GetAllergeenById($id)
+    public function sp_GetProductPerAlleergeen($id)
     {
-        // fetching the data from the database  by id
-        return DB::select('CALL sp_GetAllergeenById(?)', [$id]);
-    }
-    
-    public function ProductPerLeverancier($id)
-    {
-        // fetching the data from the database  by id
-        return DB::select('CALL sp_GetProductPerLeverancier(?)', [$id]);
+        // fetching the data from the database by id
+        return DB::select('CALL sp_GetProductPerAlleergeen(?)', [$id]);
     }
 }
