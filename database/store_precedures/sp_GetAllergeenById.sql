@@ -11,10 +11,10 @@ CREATE PROCEDURE sp_GetAllergeenById(
 BEGIN
 
     SELECT Id
-          ,Naam
-          ,Omschrijving
+          ,ALGE.Naam
+          ,ALGE.Omschrijving
           ,FORMAT(ALGE.DatumGewijzigd, '%d-%m-%Y') AS DatumGewijzigd
-    FROM Allergeen
+    FROM Allergeen AS ALGE
     WHERE Id = p_id;
 
 END$$
