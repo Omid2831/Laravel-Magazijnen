@@ -53,7 +53,7 @@
 @endsection
 
 
-@push('scripts')
+@push('leverancier')
     @if (!$hasStock)
         <script>
             // Redirect to warehouse overview after 4 seconds

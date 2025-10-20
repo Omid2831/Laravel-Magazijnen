@@ -24,7 +24,7 @@
                         transition-all duration-300 hover:font-semibold hover:scale-105">
                         --}}
                         <td class="border border-gray-400 px-4 py-2">
-                            <form action="{{ route('magazijn.allergenenInfo', $product->Id) }}" method="POST">
+                            <form action="{{ route('magazijn.allergeenInfo', $product->Id) }}" method="POST">
                                 @csrf
                                 @method('GET')
                                 <button type="submit"

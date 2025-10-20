@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Leverancier')</title>
+    <title>@yield('title', 'Allergeen')</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
@@ -20,11 +20,11 @@
 
     <main class="container mx-auto px-4 py-8">
         <div class="mb-6 p-2">
-            @yield('leverancierInfo')
+            @yield('allergeenInfo')
         </div>
 
         <div class="mb-2 p-2">
-            @yield('t_leverancier')
+            @yield('t_allergeen')
         </div>
     </main>
 
@@ -32,4 +32,4 @@
 
 </html>
 
-@stack('leverancier')
+@stack('allergeen')

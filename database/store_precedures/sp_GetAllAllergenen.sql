@@ -1,3 +1,5 @@
+USE aryanDBassignment;
+
 DROP PROCEDURE IF EXISTS sp_GetAllAllergenen;
 
 DELIMITER $$
