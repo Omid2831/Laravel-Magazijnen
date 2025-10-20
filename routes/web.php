@@ -15,7 +15,7 @@ Route::get('/', function () {
 Route::get('magazijn/index', [MagazijnController::class, 'index'])->name('magazijn.index');
 
 // allergeen info
-Route::get('/magazijn/{id}/allergenenInfo', [MagazijnController::class, 'allergenenInfo'])->name('magazijn.allergenenInfo');
+Route::get('/magazijn/{id}/allergeenInfo', [MagazijnController::class, 'allergeenInfo'])->name('magazijn.allergeenInfo');
 // Leverancier info
 Route::get('/magazijn/{id}/leverantieInfo', [MagazijnController::class, 'leverantieInfo'])->name('magazijn.leverantieInfo');
 
