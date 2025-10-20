@@ -48,18 +48,17 @@ class MagazijnController extends Controller
 
             // Set fixed no-stock message
             $errorMessage = null;
-            if (!$hasStock)
-        {
+            if (!$hasStock) {
                 // define the error message here to pass to the view if there is no stock
                 $errorMessage = 'Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is: 30-04-2023';
-            return view('magazijn.leverantieInfo', [
-                'title' => 'Leverantie Informatie',
-                'leverancier' => $leverancier,
-                'producten' => $producten,
-                'hasStock' => $hasStock,
-                'error' => $errorMessage
-            ]);
-        }
+                return view('magazijn.leverantieInfo', [
+                    'title' => 'Leverantie Informatie',
+                    'leverancier' => $leverancier,
+                    'producten' => $producten,
+                    'hasStock' => $hasStock,
+                    'error' => $errorMessage
+                ]);
+            }
             // if there is a stock available, return the view successfully
             return view('magazijn.leverantieInfo', [
                 'title' => 'Leverantie Informatie',
@@ -67,7 +66,6 @@ class MagazijnController extends Controller
                 'producten' => $producten,
                 'hasStock' => $hasStock
             ]);
-
         } catch (\Exception $e) {
             Log::error('Error fetching leverancier info: ' . $e->getMessage());
             return back()->with('error', 'Er is een fout opgetreden bij het ophalen van de leverancier informatie.');
@@ -76,13 +74,25 @@ class MagazijnController extends Controller
 
 
     public function allergeenInfo($id)
-    {   
-         $allergeenInfo = $this->magazijnModel->sp_GetAllergeenById($id); 
+    {
+        try {
 
-        return view('magazijn.allergeenInfo', [
-            'title' => 'Allergeen Informatie',
-            'allergeen' => $allergeenInfo
-        ]);
+            $products = $this->magazijnModel->sp_GetProductById($id);
+            $allergeenInfo = $this->magazijnModel->sp_GetAllergeenById($id);
+
+            /*
+        Use for debugging purposes and see the data being fetched successfully
+        dd([$allergeenInfo, $products]);
+    */
+            return view('magazijn.allergeenInfo', [
+                'title' => 'Allergeen Informatie',
+                'allergeen' => $allergeenInfo,
+                'products' => $products
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error fetching allergeen info: ' . $e->getMessage());
+            return back()->with('error', 'Er is een fout opgetreden bij het ophalen van de allergeen informatie.');
+        }
     }
     /**
      * Show the form for creating a new resource.
