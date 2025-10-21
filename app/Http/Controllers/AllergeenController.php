@@ -31,7 +31,7 @@ class AllergeenController extends Controller
 
         // return the view with the data and metadata
         return view('allergeen.index', compact('Metadata', 'allergeen'));
-        
+
        }catch(\Exception $e){
         // in case of error, return back with the error message
         Log::error('Error fetching allergenen data: ' . $e->getMessage());
@@ -47,7 +47,7 @@ class AllergeenController extends Controller
      */
     public function create()
     {
-        //
+        return view('allergeen.create');
     }
 
     /**
