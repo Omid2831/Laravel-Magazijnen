@@ -24,8 +24,8 @@ Route::get('/magazijn/{id}/leverantieInfo', [MagazijnController::class, 'leveran
 Route::get('/allergeen', [AllergeenController::class, 'index'])->name('allergeen.index');
 
 // Allergeen Create
-Route::get('allergeen/create', [AllergeenController::class, 'create'])->name('allergeen.create');
-Route::post('allergeen', [AllergeenController::class, 'store'])->name('allergeen.store');
+Route::get('/allergeen/create', [AllergeenController::class, 'create'])->name('allergeen.create');
+Route::post('/allergeen/store', [AllergeenController::class, 'store'])->name('allergeen.store');
 
 
 
