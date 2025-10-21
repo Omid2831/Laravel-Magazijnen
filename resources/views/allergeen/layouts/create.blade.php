@@ -19,7 +19,7 @@
     
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="container mx-auto px-4 p-8 mt-[10em] h-auto">
         @yield('content')
     </main>
 
