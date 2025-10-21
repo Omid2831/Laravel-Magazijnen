@@ -17,6 +17,10 @@ class AllergeenModel extends Model
      */
     public static function createAllergeen($naam, $omschrijving)
     {
-        DB::selectOne('CALL sp_CreateAllergenen(?, ?)', [$naam, $omschrijving]);
+        // Calls the procedure and returns the result (new_id)
+        return DB::selectOne('CALL sp_CreateAllergenen(?, ?)', [
+            $naam,
+            $omschrijving
+        ]);
     }
 }
