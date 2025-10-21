@@ -19,7 +19,7 @@
     
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 p-8 mt-[10em] h-auto">
+    <main class="container mx-auto px-4">
         @yield('content')
     </main>
 
@@ -28,3 +28,5 @@
 </body>
 
 </html>
+
+@stack('scripts')
