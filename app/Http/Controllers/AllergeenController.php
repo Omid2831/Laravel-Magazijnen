@@ -4,15 +4,42 @@ namespace App\Http\Controllers;
 
 use App\Models\AllergeenModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AllergeenController extends Controller
 {
+    private $allergeenModel;
+    public function __construct()
+    {
+        $this->allergeenModel = new AllergeenModel();
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('allergeen.index');
+
+       try{
+         // get the feched data from the store procedure
+        $allergeen = $this->allergeenModel->getAllAllergenenData();
+
+        
+        // set the metadata for the view here and pass the fetcched data to the view
+        $Metadata = [
+            'title' => 'Allergenen Overzicht',
+        ];
+
+        // return the view with the data and metadata
+        return view('allergeen.index', compact('Metadata', 'allergeen'));
+        
+       }catch(\Exception $e){
+        // in case of error, return back with the error message
+        Log::error('Error fetching allergenen data: ' . $e->getMessage());
+
+        // return back with an error message
+        return back()->withErrors('Er is een fout opgetreden bij het ophalen van de allergenen gegevens.');
+
+       }
     }
 
     /**
