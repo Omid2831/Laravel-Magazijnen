@@ -21,7 +21,11 @@ Route::get('/magazijn/{id}/leverantieInfo', [MagazijnController::class, 'leveran
 
 
 // Allergeen Overview
-Route::get('/allergeen', [AllergeenController::class, 'index'])->name('allergeenindex');
+Route::get('/allergeen', [AllergeenController::class, 'index'])->name('allergeen.index');
+
+// Allergeen Create 
+Route::get('/allergeen/create', [AllergeenController::class, 'create'])->name('allergeen.create');
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
