@@ -44,7 +44,7 @@ class AllergeenController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {  
+    {
         $allergeen = $this->allergeenModel->getAllAllergenenData();
         return view('allergeen.create', [
             'title' => 'Nieuwe Record aanmaken',
@@ -61,25 +61,30 @@ class AllergeenController extends Controller
         try {
             $validatedData = $request->validate([
                 'naam' => 'required|string|max:50',
-                'omschrijving' => 'required|string',
+                'omschrijving' => 'required|string|max:255',
             ]);
 
-            $allergeen = AllergeenModel::createAllergeen(
+            // Call the model to create the allergen
+            AllergeenModel::createAllergeen(
                 $validatedData['naam'],
                 $validatedData['omschrijving']
             );
 
-            if (!$allergeen) {
-                throw new \Exception('Stored procedure returned no result.');
-            }
-
-            return redirect()->route('allergeen.index')
+            // Redirect back to index page with success message
+            return redirect()
+                ->route('allergeen.index')
                 ->with('success', 'Allergeen succesvol aangemaakt.');
         } catch (\Exception $e) {
+            // Log the error for debugging
             Log::error('Error creating allergen: ' . $e->getMessage());
-            return back()->withErrors('Er is een fout opgetreden bij het aanmaken van het allergeen.')->withInput();
+
+            // Redirect back with error message and old input
+            return back()
+                ->withErrors('Er is een fout opgetreden bij het aanmaken van het allergeen.')
+                ->withInput();
         }
     }
+
 
     /**
      * Display the specified resource.
