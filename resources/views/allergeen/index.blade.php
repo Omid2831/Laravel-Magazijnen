@@ -1,0 +1,1 @@
+<h2>Allergenen page</h2>
