@@ -30,21 +30,16 @@
 
 
 @push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const flashMessages = document.querySelectorAll('.flash-message');
-
-        flashMessages.forEach(el => {
-            // Auto-hide after 4 seconds
-            setTimeout(() => {
-                el.remove();
-
-                // Only redirect if it’s a success message
-                if (el.id === 'success-message') {
-                    window.location.href = "{{ route('allergeen.index') }}";
-                }
-            }, 4000);
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                setTimeout(() => {
+                    const el = document.querySelectorAll('.flash-message');
+                    el.forEach(element => element.remove());
+                }, 4000);
+                // 4 seconds visible
+            }
         });
-    });
-</script>
+    </script>
 @endpush
