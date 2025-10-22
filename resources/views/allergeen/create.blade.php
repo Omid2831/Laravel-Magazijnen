@@ -49,13 +49,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-<script>
-    // Auto-hide flash messages after 4 seconds
-    setTimeout(() => {
-        const el = document.getElementById('flash-message');
-        if (el) el.remove();
-    }, 4000);
-</script>
-@endpush
