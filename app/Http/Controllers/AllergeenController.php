@@ -45,43 +45,32 @@ class AllergeenController extends Controller
      */
     public function create()
     {
-        $allergeen = $this->allergeenModel->getAllAllergenenData();
         return view('allergeen.create', [
             'title' => 'Nieuwe Record aanmaken',
-            'description' => 'Hier kunt u een nieuwe allergeeen aanmaken.',
-            'allergeen' => $allergeen
+            'description' => 'Hier kunt u een nieuwe allergeen aanmaken.'
         ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created allergen in storage.
      */
     public function store(Request $request)
     {
-        try {
-            $validatedData = $request->validate([
-                'naam' => 'required|string|max:50',
-                'omschrijving' => 'required|string|max:255',
-            ]);
+        // Validate incoming form data
+        $validatedData = $request->validate([
+            'naam' => 'required|string|max:50',
+            'omschrijving' => 'required|string|max:255',
+        ]);
 
-            // Call the model to create the allergen
-            AllergeenModel::createAllergeen(
-                $validatedData['naam'],
-                $validatedData['omschrijving']
-            );
+        $newId = AllergeenModel::createAllergeen($validatedData['naam'], $validatedData['omschrijving']);
 
-            // Redirect back to index page with success message
-            return redirect()
-                ->route('allergeen.index')
-                ->with('success', 'Allergeen succesvol aangemaakt.');
-        } catch (\Exception $e) {
-            // Log the error for debugging
-            Log::error('Error creating allergen: ' . $e->getMessage());
-
-            // Redirect back with error message and old input
-            return back()
-                ->withErrors('Er is een fout opgetreden bij het aanmaken van het allergeen.')
-                ->withInput();
+        if ($newId) {
+            return redirect()->route('allergeen.index')
+                ->with('success', 'Allergeen succesvol aangemaakt! (ID: ' . $newId . ')');
+        } else {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Er ging iets mis bij het aanmaken van het allergeen.');
         }
     }
 
