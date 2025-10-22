@@ -62,15 +62,23 @@ class AllergeenController extends Controller
             'omschrijving' => 'required|string|max:255',
         ]);
 
-        $newId = AllergeenModel::createAllergeen($validatedData['naam'], $validatedData['omschrijving']);
+        try {
+            $newId = AllergeenModel::createAllergeen($validatedData['naam'], $validatedData['omschrijving']);
 
-        if ($newId) {
-            return redirect()->route('allergeen.index')
-                ->with('success', 'Allergeen succesvol aangemaakt! (ID: ' . $newId . ')');
-        } else {
+            if ($newId) {
+                return redirect()->back()
+                    ->with('success', 'Allergeen succesvol aangemaakt! (ID: ' . $newId . ')');
+            } else {
+                Log::error('Error creating allergen: ' . json_encode($validatedData));
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', 'Er ging iets mis bij het aanmaken van het allergeen.');
+            }
+        } catch (\Exception $e) {
+            Log::error('Error storing allergen: ' . $e->getMessage());
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Er ging iets mis bij het aanmaken van het allergeen.');
+                ->with('error', 'Er is een onverwachte fout opgetreden. Probeer het later opnieuw.');
         }
     }
 
