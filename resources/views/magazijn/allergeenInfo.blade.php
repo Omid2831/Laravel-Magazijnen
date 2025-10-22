@@ -43,7 +43,7 @@
                     <tr id="no-stock-message">
                         <td colspan="2" class="text-center px-6 py-8 bg-red-50 border-t border-gray-300">
                             <h2 class="text-2xl font-semibold text-red-700 mb-2">
-                                {{ $errorMessage ?? 'Er is iets mis gegaan in de database' }}
+                                {{ $error  ?? 'Er zijn geen allergenen gevonden voor dit product.' }}
                             </h2>
                             <p class="text-gray-600">U wordt automatisch teruggestuurd naar het magazijnoverzicht...</p>
                         </td>
