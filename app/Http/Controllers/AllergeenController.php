@@ -110,8 +110,14 @@ class AllergeenController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AllergeenModel $allergeenModel)
+    public function destroy(AllergeenModel $allergeenModel, $id)
     {
-        //
+        try{
+            $allergeen = allergeenModel::DeleteAllergeenById($id);
+            return redirect()->back()->with('success', 'Allergeen succesvol verwijderd.');
+
+        }catch(\Exception $e){
+            Log::error('Error deleting allergen: ' . $e->getMessage());
+        }
     }
 }
