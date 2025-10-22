@@ -13,6 +13,7 @@
                 <tr>
                     <th class="border border-gray-400 px-4 py-2">Naam</th>
                     <th class="border border-gray-400 px-4 py-2">Omschrijving</th>
+                    <th class="border border-gray-400 px-4 py-2">Verwijderen</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,18 @@
                     <tr>
                         <td class="border border-gray-400 px-4 py-2">{{ $item->Naam }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $item->Omschrijving }}</td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            <form action="{{ route('allergeen.destroy', $item->Id) }}" method="POST"
+                                onsubmit="return confirm('Weet je zeker dat je dit allergeen wilt verwijderen?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="text-gray-500 hover:text-pink-600 italic transition-all duration-300 ease-out 
+                                    hover:translate-x-1 hover:opacity-80 hover:shadow-sm">
+                                    Verwijderen
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
