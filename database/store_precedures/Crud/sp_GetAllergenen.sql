@@ -1,10 +1,10 @@
 USE aryanDBassignment;
 
-DROP PROCEDURE IF EXISTS sp_GetAllAllergenen;
+DROP PROCEDURE IF EXISTS sp_GetAllergenen;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_GetAllAllergenen()
+CREATE PROCEDURE sp_GetAllergenen()
 BEGIN
 
     SELECT ALGE.Id

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\MagazijnController;
-use App\Http\Controllers\LeverancierController;
+use App\Http\Controllers\AllergeenController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +18,15 @@ Route::get('magazijn/index', [MagazijnController::class, 'index'])->name('magazi
 Route::get('/magazijn/{id}/allergeenInfo', [MagazijnController::class, 'allergeenInfo'])->name('magazijn.allergeenInfo');
 // Leverancier info
 Route::get('/magazijn/{id}/leverantieInfo', [MagazijnController::class, 'leverantieInfo'])->name('magazijn.leverantieInfo');
+
+
+// Allergeen Overview
+Route::get('/allergeen', [AllergeenController::class, 'index'])->name('allergeen.index');
+
+// Allergeen Create
+Route::get('/allergeen/create', [AllergeenController::class, 'create'])->name('allergeen.create');
+Route::post('/allergeen/store', [AllergeenController::class, 'store'])->name('allergeen.store');
+
 
 
 Route::view('dashboard', 'dashboard')
