@@ -4,7 +4,7 @@
     <div class="min-h-screen flex items-center justify-center bg-gray-100 py-8">
         <div class="w-full max-w-lg bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
             {{-- Alert message --}}
-            @include('allergeen.partials.alerts')
+            <x-alerts />
             {{-- Title & Description --}}
             <div class="text-center mb-6">
                 <h2 class="text-3xl font-bold text-gray-800 mb-1">{{ $title }}</h2>
