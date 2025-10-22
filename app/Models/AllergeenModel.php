@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class AllergeenModel extends Model
-{
+{   
+    // define the table name
+    protected $table = 'Allergeen';
+
+
     public function getAllAllergenenData()
     {
         return DB::select('CALL sp_GetAllergenen()');
