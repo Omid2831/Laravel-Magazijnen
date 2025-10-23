@@ -110,8 +110,30 @@ class AllergeenController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AllergeenModel $allergeenModel)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(AllergeenModel $allergeenModel, $id)
     {
-        //
+        try {
+            $allergeen = AllergeenModel::find($id);
+
+            if (!$allergeen) {
+                return redirect()->back()->with('error', 'Allergeen niet gevonden.');
+            }
+
+            $naam = $allergeen->Naam;
+
+            $deleted = AllergeenModel::DeleteAllergeenById($id);
+
+            if ($deleted) {
+                return redirect()->back()->with('success', "Allergeen '$naam' is succesvol verwijderd.");
+            } else {
+                return redirect()->back()->with('error', "Kon allergeen '$naam' niet verwijderen.");
+            }
+        } catch (\Exception $e) {
+            Log::error('Error deleting allergen: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Er is een fout opgetreden bij het verwijderen.');
+        }
     }
 }

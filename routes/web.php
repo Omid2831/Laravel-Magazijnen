@@ -27,6 +27,10 @@ Route::get('/allergeen', [AllergeenController::class, 'index'])->name('allergeen
 Route::get('/allergeen/create', [AllergeenController::class, 'create'])->name('allergeen.create');
 Route::post('/allergeen/store', [AllergeenController::class, 'store'])->name('allergeen.store');
 
+// Allergeen Delete
+Route::delete('/allergeen/{id}', [AllergeenController::class, 'destroy'])->name('allergeen.destroy');
+
+
 
 
 Route::view('dashboard', 'dashboard')
