@@ -29,16 +29,15 @@
 </div>
 
 
-@push('scripts')
+@push('alert')
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const flashMessage = document.getElementById('flash-message');
-            if (flashMessage) {
+            const flashMessages = document.querySelectorAll('.flash-message');
+            if (flashMessages.length > 0) {
                 setTimeout(() => {
-                    const el = document.querySelectorAll('.flash-message');
-                    el.forEach(element => element.remove());
-                }, 4000);
-                // 4 seconds visible
+                    flashMessages.forEach(el => el.remove());
+                    window.location.href = "{{ route('allergeen.index') }}";
+                }, 4000); // 4 seconds visible
             }
         });
     </script>
