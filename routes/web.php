@@ -30,11 +30,10 @@ Route::post('/allergeen/store', [AllergeenController::class, 'store'])->name('al
 // Allergeen Delete
 Route::delete('/allergeen/{id}', [AllergeenController::class, 'destroy'])->name('allergeen.destroy');
 
-// Allergeen Edit 
+// Allergeen Edit
+
 // Display the edit form
-Route::get('/allergeen/{id}/edit', function ($id) {
-    return view('allergeen.edit', ['id' => $id]);
-})->name('allergeen.Edit');
+Route::get('/allergeen/{id}/edit',  [AllergeenController::class, 'edit'])->name('allergeen.Edit');
 
 // Handle the update
 Route::put('/allergeen/{id}', [AllergeenController::class, 'update'])->name('allergeen.update');
