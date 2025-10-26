@@ -94,10 +94,28 @@ class AllergeenController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AllergeenModel $allergeenModel)
+    public function edit($id)
     {
-        //
+        try {
+            // Fetch the allergen by Id
+            $allergeen = collect($this->allergeenModel->getAllAllergenenData())->firstWhere('Id', $id);
+
+            if (!$allergeen) {
+                return redirect()->route('allergeen.index')->with('error', 'Allergeen niet gevonden.');
+            }
+
+            $Metadata = [
+                'title' => 'Allergeen Bewerken',
+            ];
+
+            return view('allergeen.edit', compact('Metadata', 'allergeen'));
+        } catch (\Exception $e) {
+            Log::error('Error loading allergen for edit: ' . $e->getMessage());
+            return redirect()->route('allergeen.index')->with('error', 'Fout bij het laden van de bewerkingspagina.');
+        }
     }
+
+
 
     /**
      * Update the specified resource in storage.
