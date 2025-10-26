@@ -51,4 +51,19 @@ class AllergeenModel extends Model
             Log::error('Error deleting allergen: ' . $e->getMessage());
         }
     }
+
+     /*
+     * Update an allergen by ID
+     */
+    public static function updateAllergeenById($id, $naam, $omschrijving)
+    {
+        try {
+            // getting the data from the database to get 
+            $allergeen = DB::select('CALL sp_UpdateAllergeen(?, ?, ?)', [$id, $naam, $omschrijving]);
+            return $allergeen;
+        } catch (\Exception $e) {
+            Log::error('Error updating allergen: ' . $e->getMessage());
+            return false;
+        }
+    }
 }
