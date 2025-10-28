@@ -94,22 +94,79 @@ class AllergeenController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AllergeenModel $allergeenModel)
+    public function edit($id)
     {
-        //
+        try {
+            // Fetch the allergen by Id
+            $allergeen = collect($this->allergeenModel->getAllAllergenenData())->firstWhere('Id', $id);
+
+            if (!$allergeen) {
+                return redirect()->route('allergeen.index')->with('error', 'Allergeen niet gevonden.');
+            }
+
+            $Metadata = [
+                'title' => 'Allergeen Bewerken',
+            ];
+
+            return view('allergeen.edit', compact('Metadata', 'allergeen'));
+        } catch (\Exception $e) {
+            Log::error('Error loading allergen for edit: ' . $e->getMessage());
+            return redirect()->route('allergeen.index')->with('error', 'Fout bij het laden van de bewerkingspagina.');
+        }
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AllergeenModel $allergeenModel)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            //  Validate input
+            $validated = $request->validate([
+                'naam' => 'required|string|max:255',
+                'omschrijving' => 'required|string',
+            ]);
+
+            //  Fetch the old allergen data
+            $oldAllergeen = collect($this->allergeenModel->getAllAllergenenData())->firstWhere('Id', $id);
+
+            if (!$oldAllergeen) {
+                return redirect()
+                    ->route('allergeen.index')
+                    ->with('error', 'Allergeen niet gevonden.');
+            }
+
+            $oldNaam = $oldAllergeen->Naam; // old name before update
+
+            //  Call model method to update via stored procedure
+            $updated = AllergeenModel::updateAllergeenById(
+                $id,
+                $validated['naam'],
+                $validated['omschrijving']
+            );
+
+            // 4. Check result and redirect accordingly
+            if ($updated === false) {
+                return redirect()
+                    ->route('allergeen.edit', $id)
+                    ->with('error', 'Fout bij het bijwerken van het allergeen.');
+            }
+
+            //  Success message with old + new name
+            return redirect()
+                ->route('allergeen.index')
+                ->with('success', "Allergeen '{$oldNaam}' is succesvol bijgewerkt naar '{$validated['naam']}'.");
+        } catch (\Exception $e) {
+            Log::error('Error updating allergen: ' . $e->getMessage());
+            return redirect()
+                ->route('allergeen.edit', $id)
+                ->with('error', 'Er is een fout opgetreden bij het bijwerken.');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     /**
      * Remove the specified resource from storage.
      */

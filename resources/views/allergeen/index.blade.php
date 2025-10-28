@@ -15,6 +15,7 @@
                     <th class="border border-gray-400 px-4 py-2">Naam</th>
                     <th class="border border-gray-400 px-4 py-2">Omschrijving</th>
                     <th class="border border-gray-400 px-4 py-2">Verwijderen</th>
+                    <th class="border border-gray-400 px-4 py-2">Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +35,14 @@
                                 </button>
                             </form>
                         </td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            <a href="{{ route('allergeen.edit', $item->Id) }}"
+                                class="text-gray-500 hover:text-blue-600 italic transition-all duration-300 ease-out
+              hover:translate-x-1 hover:opacity-80 hover:shadow-sm">
+                                Edit
+                            </a>
+                        </td>
+
                     </tr>
                 @endforeach
             </tbody>
