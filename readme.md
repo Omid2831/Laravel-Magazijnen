@@ -1,8 +1,16 @@
 # Warehouse Management System – Jamin
 
-This web application is designed for **warehouse employees** at the company Jamin to efficiently manage and track products stored in the warehouse. It provides detailed information about **product deliveries** and **allergen information** to ensure proper inventory oversight and customer safety.
+This web application is designed for **warehouse employees** at the company Jamin to manage and track products stored in the warehouse efficiently. It provides detailed information about **product deliveries** and **allergen information** to ensure proper inventory oversight and customer safety.
 
 ---
+
+## demo
+
+
+
+https://github.com/user-attachments/assets/d3ee7f3e-3ca4-4cd0-8a5f-ee3cd2a857af
+
+
 
 ## Features
 
