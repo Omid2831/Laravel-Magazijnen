@@ -30,8 +30,8 @@ Route::post('/allergeen/store', [AllergeenController::class, 'store'])->name('al
 // Allergeen Delete
 Route::delete('/allergeen/{id}', [AllergeenController::class, 'destroy'])->name('allergeen.destroy');
 
-// Allergeen Edit
 
+// Allergeen Edit
 // Display the edit form
 Route::get('/allergeen/{id}/edit',  [AllergeenController::class, 'edit'])->name('allergeen.Edit');
 
