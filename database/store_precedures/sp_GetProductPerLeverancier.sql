@@ -8,11 +8,11 @@ CREATE PROCEDURE sp_GetProductPerLeverancier(
     IN p_ProductId INT
 )
 BEGIN
-    SELECT 
+    SELECT
          P.Naam AS ProductNaam
-        ,PPL.DatumLevering AS DatumLaatsteLevering
+        ,DATE_FORMAT(PPL.DatumLevering, '%d-%m-%Y') AS DatumLaatsteLevering
         ,PPL.Aantal as AantalGeleverd
-        ,PPL.DatumEerstVolgendeLevering AS EerstvolgendeLevering
+        ,DATE_FORMAT(PPL.DatumEerstVolgendeLevering, '%d-%m-%Y' ) AS EerstvolgendeLevering
         ,M.AantalAanwezig AS AantalAanwezig
 
     FROM Product P
