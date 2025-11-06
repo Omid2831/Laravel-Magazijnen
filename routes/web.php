@@ -41,6 +41,16 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 
+
+
+// leeverancier Overview
+Route::get('/leverancier/index', function(){
+
+  
+
+    return view('leverancier.index');
+})->name('leverancier.index');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
