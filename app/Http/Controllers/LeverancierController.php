@@ -21,20 +21,16 @@ class LeverancierController extends Controller
     public function index()
     {
         try {
-            // fetching the data
-            $leveranciers = $this->leverancierModel->getAllLeverancierData();
-            dd($leveranciers);
-            // set the metadata for the view here and pass the fetched data to the view
-            $Metadata = [
-                'title' => 'Leverancier Overzicht'
-            ];
+            $leverancierOverzicht = $this->leverancierModel->getAllLeverancierData();
 
-            // return the vieew with the data and metadata
-            return view('leverancier.index', compact('Metadata', 'leveranciers'));
+            // NOTE: Blade template expects $leveranciers, not $levering
+            return view('leverancier.index', [
+                'title' => 'Leverancier Overzicht',
+                'leveranciers' => $leverancierOverzicht,
+            ]);
         } catch (\Exception $e) {
             // create a error log in case you have any erorrs
             Log::error('Error fechting Leverancier data :' . $e->getMessage());
-
         }
     }
 
