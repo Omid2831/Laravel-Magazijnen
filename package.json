@@ -3,7 +3,9 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "frontend":"vite",
+        "backend":"php artisan serve",
+        "dev": "concurrently  \"npm:frontend\" \"npm:backend\""
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.1.14",
