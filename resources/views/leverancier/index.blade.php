@@ -28,7 +28,9 @@
                         <td class="border border-gray-400 px-4 py-2">{{ $leverancier->Leveranciernummer }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $leverancier->Mobiel }}</td>
                         <td class="border border-gray-400 px-4 py-2">{{ $leverancier->AantalVerschillendeProducten }}</td>
-                        {{-- <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later  "ToonProducten" ' }}</td> --}}
+                        <td class="border border-gray-400 px-4 py-2">
+                            <i class="bx bxs-box bx-bounce text-xl text-gray-700" aria-hidden="true"></i>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
