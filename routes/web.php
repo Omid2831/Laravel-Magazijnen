@@ -5,6 +5,7 @@ use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\MagazijnController;
 use App\Http\Controllers\AllergeenController;
+use App\Http\Controllers\LeverancierController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,13 +44,8 @@ Route::view('dashboard', 'dashboard')
 
 
 
-// leeverancier Overview
-Route::get('/leverancier/index', function(){
-
-  
-
-    return view('leverancier.index');
-})->name('leverancier.index');
+// leverancier Overview
+Route::get('/leverancier/index', [LeverancierController::class, 'index'])->name('leverancier.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -70,4 +66,4 @@ Route::middleware(['auth'])->group(function () {
         ->name('two-factor.show');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
