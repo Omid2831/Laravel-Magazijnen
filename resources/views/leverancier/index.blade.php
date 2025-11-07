@@ -2,7 +2,7 @@
 
 @section('content')
     <x-alerts />
-    <h2 class='text-center text-3xl font-bold text-shadow'>{{ "Leverancier Overzcht" }}</h2>
+    <h2 class='text-center text-3xl font-bold text-shadow'>{{ $title }}</h2>
     <a href="{{ route('leverancier.index') }}"
         class="inline-block bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium px-5 py-2 rounded-lg border border-gray-300 transition-colors duration-200">
         Overzicht Leverancier
@@ -21,17 +21,16 @@
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($leveranciers as $item) --}}
+                @foreach ($leveranciers as $leverancier)
                     <tr>
-                        <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later "Naam" '}}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later "ContactPersoon" ' }}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later "Leveranciernummer" ' }}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later "Mobiel" ' }}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later "Aantal verschillende producten" ' }}</td>
-                        <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later  "ToonProducten" ' }}</td>
-                        
+                        <td class="border border-gray-400 px-4 py-2">{{ $leverancier->Naam }}</td>
+                        <td class="border border-gray-400 px-4 py-2">{{ $leverancier->Contactpersoon }}</td>
+                        <td class="border border-gray-400 px-4 py-2">{{ $leverancier->Leveranciernummer }}</td>
+                        <td class="border border-gray-400 px-4 py-2">{{ $leverancier->Mobiel }}</td>
+                        <td class="border border-gray-400 px-4 py-2">{{ $leverancier->AantalVerschillendeProducten }}</td>
+                        {{-- <td class="border border-gray-400 px-4 py-2">{{ 'will be filled later  "ToonProducten" ' }}</td> --}}
                     </tr>
-                {{-- @endforeach --}}
+                @endforeach
             </tbody>
         </table>
     </div>
