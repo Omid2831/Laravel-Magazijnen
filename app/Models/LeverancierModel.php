@@ -12,7 +12,9 @@ class LeverancierModel extends Model
     public function getAllLeverancierData()
     {
         $result = DB::select('CALL sp_getAllLeverancierOverzicht()');
-
         return $result;
+    }
+    public  function GetProductenById($id) {
+        
     }
 }
