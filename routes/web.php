@@ -46,9 +46,8 @@ Route::view('dashboard', 'dashboard')
 
 // leverancier Overview
 Route::get('/leverancier/index', [LeverancierController::class, 'index'])->name('leverancier.index');
-
-// Leverancier Show
-Route::get('leverancier/{id}/show', [LeverancierController::class, 'show'])->name('leverancier.show');
+// Leverancier Show (implicit model binding)
+Route::get('/leverancier/{leverancier}', [LeverancierController::class, 'show'])->name('leverancier.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
