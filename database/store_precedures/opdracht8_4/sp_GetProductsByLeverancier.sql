@@ -7,9 +7,9 @@ CREATE PROCEDURE sp_getProductsByLeverancierId (IN p_LeverancierId INT)
 BEGIN
     SELECT
         P.Id
+        ,P.Naam AS ProductNaam
         ,MAX(M.AantalAanwezig) AS AantalInMagazijn
-        ,MAX(M.VerpakkingsEenheid) AS VerpakkingsEenheid
-        ,MAX(M.VerpakkingsEenheid) AS VerpakkingsEenheid
+        ,MAX(M.VerpakkingsEenheid) AS Verpakkingseenheid
         ,MAX(PPL.DatumLevering) AS LaatsteLevering
         ,MIN(PPL.DatumEerstVolgendeLevering) AS EerstvolgendeLevering
     FROM
