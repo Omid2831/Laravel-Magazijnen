@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LeverancierModel;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -34,10 +35,11 @@ class LeverancierController extends Controller
                 'title' => 'Leverancier Overzicht',
                 'leveranciers' => $leverancierOverzicht,
             ]);
-        } catch (\Exception $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             // log and return 500
             Log::error('Error fetching Leverancier data: ' . $e->getMessage());
-            abort(500, 'Interne fout bij laden leveranciers');
+
+            abort(500, 'Service has been down wait for a bit of time');
         }
     }
 
@@ -62,13 +64,16 @@ class LeverancierController extends Controller
      */
     public function show(LeverancierModel $leverancier)
     {
-        // Implicit route model binding provides the LeverancierModel instance
-        return view('leverancier.show', [
-            'title' => 'Leverancier Detail',
-            'leverancier' => $leverancier,
-        ]);
-    }
 
+            // Get products for the given leverancier
+            $products = $this->leverancierModel->getProductsByLeverancierId($leverancier->Id);
+
+            return view('leverancier.show', [
+                'title' => 'Leverancier Detail',
+                'leverancier' => $leverancier,
+                'products' => $products,
+            ]);
+    }
     /**
      * Show the form for editing the specified resource.
      */
