@@ -65,14 +65,15 @@ class LeverancierController extends Controller
     public function show(LeverancierModel $leverancier)
     {
 
-            // Get products for the given leverancier
-            $products = $this->leverancierModel->getProductsByLeverancierId($leverancier->Id);
+        $products = collect($this->leverancierModel->getProductsByLeverancierId($leverancier->Id))
+            ->sortByDesc('AantalInMagazijn')
+            ->values();
 
-            return view('leverancier.show', [
-                'title' => 'Leverancier Detail',
-                'leverancier' => $leverancier,
-                'products' => $products,
-            ]);
+        return view('leverancier.show', [
+            'leverancier' => $leverancier,
+            'products' => $products,
+            'title' => 'Geleverde producten',
+        ]);
     }
     /**
      * Show the form for editing the specified resource.
