@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
-                        <tr>
+                        <tr class="{{ $loop->even ? 'bg-gray-50' : '' }}">
                             <td class="py-2 px-4 border-b">{{ $product->ProductNaam }}</td>
                             <td class="py-2 px-4 border-b">{{ $product->AantalInMagazijn }}</td>
                             <td class="py-2 px-4 border-b">{{ $product->Verpakkingseenheid }}</td>
@@ -40,5 +40,9 @@
         @else
             <p>Er zijn geen producten gevonden voor deze leverancier.</p>
         @endif
+         <div class="flex justify-end mt-6 space-x-4">
+            <a href="{{ url()->previous() }}" class="px-4 py-2 bg-gray-200 rounded font-semibold text-shadow-2xs hover:bg-gray-300">Terug</a>
+            <a href="{{ route('home') }}" class="px-4 py-2 bg-gray-600 text-white font-semibold text-shadow-2xs rounded hover:bg-gray-700">Home</a>
+        </div>
     </div>
 @endsection
