@@ -4,7 +4,7 @@
     "scripts": {
         "build": "vite build",
         "frontend": "vite",
-        "backend": "php artisan serve --host=127.0.0.1 --port=8050",
+        "backend": "php artisan serve",
         "dev": "concurrently  \"npm:frontend\" \"npm:backend\""
     },
     "dependencies": {
