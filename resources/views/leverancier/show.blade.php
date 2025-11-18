@@ -14,7 +14,8 @@
 @section('t_leverancier')
     <div class="mt-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Producten</h2>
-        @if (count($products) > 0)
+
+        @if ($hasStock)
             <table class="min-w-full bg-white border-4 border-dashed">
                 <thead>
                     <tr>
@@ -30,11 +31,10 @@
                         <tr class="{{ $loop->even ? 'bg-gray-50' : '' }}">
                             <td class="text-center py-2 px-4 border-b">{{ $product->ProductNaam }}</td>
                             <td class="text-center py-2 px-4 border-b">{{ $product->AantalInMagazijn }}</td>
-                            <td class="text-center py-2 px-4 border-b">{{ $product->Verpakkingseenheid }}</td>
+                            <td class="text-center py-2 px-4 border-b">{{ $product->Verpakkingseenheid }} Kg</td>
                             <td class="text-center py-2 px-4 border-b">{{ $product->LaatsteLevering }}</td>
                             <td class="text-center py-2 px-4 border-b">
-                                <button class="text-accecnt py-1 px-3 rounded trasparent"
-                                    title="Nieuwe levering">
+                                <button class="text-accecnt py-1 px-3 rounded transparent" title="Nieuwe levering">
                                     <i class="fa-solid fa-plus font-extrabold text-shadow-xl text-2xl">+</i>
                                 </button>
                             </td>
@@ -43,8 +43,9 @@
                 </tbody>
             </table>
         @else
-            <p>Er zijn geen producten gevonden voor deze leverancier.</p>
+            <p>Dit bedrijf heeft tot nu toe geen producten geleverd aan Jamin</p>
         @endif
+
         <div class="flex justify-end mt-6 space-x-4">
             <a href="{{ url()->previous() }}"
                 class="px-4 py-2 bg-gray-200 rounded font-semibold text-shadow-2xs hover:bg-gray-300">Terug</a>
@@ -53,3 +54,23 @@
         </div>
     </div>
 @endsection
+
+@push('leverancier')
+    @if (!$hasStock)
+        <script>
+            // Create notification element
+            const notif = document.createElement('div');
+            notif.innerText = "Geen producten gevonden. Je wordt teruggestuurd...";
+            notif.className =
+                "fixed top-5 right-5 bg-red-600 text-white font-semibold px-4 py-3 rounded shadow-lg z-50";
+
+            document.body.appendChild(notif);
+
+            // After 4 seconds: remove notification and redirect
+            setTimeout(() => {
+                notif.remove();
+                window.location.href = "{{ route('leverancier.index') }}";
+            }, 4000);
+        </script>
+    @endif
+@endpush
