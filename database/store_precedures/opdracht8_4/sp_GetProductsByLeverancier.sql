@@ -10,9 +10,9 @@ BEGIN
         ,P.Naam AS ProductNaam
         ,MAX(M.AantalAanwezig) AS AantalInMagazijn
         ,MAX(M.VerpakkingsEenheid) AS Verpakkingseenheid
-        ,MAX(PPL.DatumLevering) AS LaatsteLevering
-        ,MIN(PPL.DatumEerstVolgendeLevering) AS EerstvolgendeLevering
-    FROM
+        ,DATE_FORMAT(MAX(PPL.DatumLevering), '%d-%m-%Y' ) AS LaatsteLevering
+        ,DATE_FORMAT(MIN(PPL.DatumEerstVolgendeLevering), '%d-%m-%Y') AS EerstvolgendeLevering
+        FROM
         Product P
     INNER JOIN ProductPerLeverancier PPL ON P.Id = PPL.ProductId
     LEFT JOIN Magazijn M ON P.Id = M.ProductId
